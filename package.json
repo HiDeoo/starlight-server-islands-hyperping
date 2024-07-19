@@ -1,0 +1,25 @@
+{
+  "name": "starlight-server-islands-hyperping",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.25.1",
+    "astro": "^4.10.2",
+    "sharp": "^0.32.5",
+    "@astrojs/check": "^0.8.2",
+    "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "@astrojs/netlify": "^5.4.0",
+    "@hideoo/prettier-config": "^2.0.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}

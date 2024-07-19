@@ -1,0 +1,31 @@
+---
+import APIStatusIsland from './APIStatusIsland.astro'
+---
+
+<APIStatusIsland server:defer><span slot="fallback"></span></APIStatusIsland>
+
+<style>
+  span {
+    background-color: var(--sl-color-black);
+    border: 1px dashed var(--sl-color-accent);
+    border-radius: 0.5rem;
+    height: 1.75rem;
+    width: 7rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    span {
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+</style>

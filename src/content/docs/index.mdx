@@ -1,0 +1,34 @@
+---
+title: Starlight + Server Islands Demo
+description: A demo of Starlight using Server Islands to display an API status widget.
+head:
+  - tag: title
+    content: Starlight + Server Islands
+template: splash
+hero:
+  tagline: A demo of Starlight using experimental Server Islands and component overrides to display an API status widget.
+  image:
+    file: ../../assets/houston.webp
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components'
+
+## Next steps
+
+<CardGrid stagger>
+  <Card title="Check out the source" icon="document">
+    Take a look at the [source
+    code](https://github.com/hideoo/starlight-server-islands-hyperping).
+  </Card>
+  <Card title="Try the official demo" icon="sun">
+    Visit the official Astro Server Islands [demo](https://server-islands.com/).
+  </Card>
+  <Card title="Read the announcement" icon="open-book">
+    Learn more in [the Astro
+    blog](https://astro.build/blog/future-of-astro-server-islands/).
+  </Card>
+  <Card title="Read the docs" icon="open-book">
+    Check out the [Server Islands
+    docs](https://docs.astro.build/en/reference/configuration-reference/#experimentalserverislands).
+  </Card>
+</CardGrid>
