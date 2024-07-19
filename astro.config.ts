@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig, envField } from 'astro/config'
 import starlight from '@astrojs/starlight'
 import netlify from '@astrojs/netlify'
 
@@ -7,6 +7,11 @@ export default defineConfig({
   adapter: netlify(),
   experimental: {
     serverIslands: true,
+    env: {
+      schema: {
+        HYPERPING_STATUS_PAGE_URL: envField.string({ context: 'server', access: 'secret' }),
+      },
+    },
   },
   integrations: [
     // TODO(HiDeoo)
