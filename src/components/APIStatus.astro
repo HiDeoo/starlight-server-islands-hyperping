@@ -1,34 +1,31 @@
 ---
-import { setTimeout } from 'node:timers/promises'
-import { z } from 'astro/zod'
-import { HYPERPING_STATUS_PAGE_URL } from 'astro:env/server'
-
-// TODO(HiDeoo) fallback
-// TODO(HiDeoo) css
-// TODO(HiDeoo) a11y/screenreader
-// TODO(HiDeoo) keep only index.mdx
-// TODO(HiDeoo) docs
-
-// FIXME(HiDeoo)
-await setTimeout(1000)
-
-const apiSchema = z.object({
-  indicator: z.union([z.literal('maintenance'), z.literal('incident'), z.literal('outage'), z.literal('up')]),
-})
-type APIStatus = z.output<typeof apiSchema>['indicator'] | 'unknown'
-
-let status: APIStatus = 'unknown'
-
-try {
-  // https://hyperping.com/docs/status-page/status-page-json
-  // Would probably use the Hyperping API in a real-world scenario with some caching.
-  const response = await fetch(new URL('/status.json', HYPERPING_STATUS_PAGE_URL))
-  if (!response.ok) throw new Error('Invalid response')
-  const data = apiSchema.parse(await response.json())
-  status = data.indicator
-} catch {
-  // Keep the unknown status if the status cannot be retrieved.
-}
+import APIStatusIsland from './APIStatusIsland.astro'
 ---
 
-<div>{status}</div>
+<APIStatusIsland server:defer><span slot="fallback"></span></APIStatusIsland>
+
+<style>
+  span {
+    background-color: var(--sl-color-black);
+    border: 1px dashed var(--sl-color-accent);
+    border-radius: 0.5rem;
+    height: 1.75rem;
+    width: 7rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    span {
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+</style>

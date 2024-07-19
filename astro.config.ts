@@ -20,6 +20,7 @@ export default defineConfig({
       components: {
         SocialIcons: './src/overrides/SocialIcons.astro',
       },
+      pagefind: false,
       social: {
         github: 'https://github.com/withastro/starlight',
       },
