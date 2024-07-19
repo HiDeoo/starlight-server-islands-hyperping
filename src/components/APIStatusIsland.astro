@@ -4,14 +4,11 @@ import { z } from 'astro/zod'
 import { HYPERPING_STATUS_PAGE_URL } from 'astro:env/server'
 import { Icon } from '@astrojs/starlight/components'
 
-// TODO(HiDeoo) mobile
-// TODO(HiDeoo) a11y/screenreader/tooltip
 // TODO(HiDeoo) keep only index.mdx
 // TODO(HiDeoo) docs
-// TODO(HiDeoo) disable pagefind
 
 // FIXME(HiDeoo)
-await setTimeout(3000)
+await setTimeout(300)
 
 const apiSchema = z.object({
   indicator: z.union([z.literal('maintenance'), z.literal('incident'), z.literal('outage'), z.literal('up')]),
@@ -37,13 +34,14 @@ let status: APIStatus = 'up'
 <span class:list={['api-status', status]}>
   {
     status === 'up' ? (
-      <svg width="16" height="16" viewBox="0 0 24 24">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
         <circle r="5" cx="12" cy="12" fill="currentColor" />
       </svg>
     ) : (
       <Icon name="warning" size="0.75rem" />
     )
   }
+  <span class="sr-only">API status:</span>
   {status === 'up' ? 'Operational' : `${status.charAt(0).toUpperCase()}${status.slice(1)}`}
 </span>
 
@@ -68,11 +66,11 @@ let status: APIStatus = 'up'
     color: var(--sl-color-green-high);
   }
 
-  :is(.maintenance, .incident) svg {
+  :is(.maintenance, .incident, .unknown) svg {
     color: var(--sl-color-orange);
   }
 
-  :global([data-theme='light']) :is(.maintenance, .incident) svg {
+  :global([data-theme='light']) :is(.maintenance, .incident, .unknown) svg {
     color: var(--sl-color-orange-high);
   }
 
