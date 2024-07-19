@@ -1,5 +1,4 @@
 ---
-import { setTimeout } from 'node:timers/promises'
 import { z } from 'astro/zod'
 import { HYPERPING_STATUS_PAGE_URL } from 'astro:env/server'
 import { Icon } from '@astrojs/starlight/components'
@@ -7,28 +6,24 @@ import { Icon } from '@astrojs/starlight/components'
 // TODO(HiDeoo) keep only index.mdx
 // TODO(HiDeoo) docs
 
-// FIXME(HiDeoo)
-await setTimeout(300)
-
 const apiSchema = z.object({
   indicator: z.union([z.literal('maintenance'), z.literal('incident'), z.literal('outage'), z.literal('up')]),
 })
 type APIStatus = z.output<typeof apiSchema>['indicator'] | 'unknown'
 
 // FIXME(HiDeoo)
-// let status: APIStatus = 'unknown'
-let status: APIStatus = 'up'
+let status: APIStatus = 'unknown'
 
-// try {
-//   // https://hyperping.com/docs/status-page/status-page-json
-//   // Would probably use the Hyperping API in a real-world scenario with some caching.
-//   const response = await fetch(new URL('/status.json', HYPERPING_STATUS_PAGE_URL))
-//   if (!response.ok) throw new Error('Invalid response')
-//   const data = apiSchema.parse(await response.json())
-//   status = data.indicator
-// } catch {
-//   // Keep the unknown status if the status cannot be retrieved.
-// }
+try {
+  // https://hyperping.com/docs/status-page/status-page-json
+  // Would probably use the Hyperping API in a real-world scenario with some caching.
+  const response = await fetch(new URL('/status.json', HYPERPING_STATUS_PAGE_URL))
+  if (!response.ok) throw new Error('Invalid response')
+  const data = apiSchema.parse(await response.json())
+  status = data.indicator
+} catch {
+  // Keep the unknown status if the status cannot be retrieved.
+}
 ---
 
 <span class:list={['api-status', status]}>
