@@ -5,9 +5,16 @@ import netlify from '@astrojs/netlify'
 // https://astro.build/config
 export default defineConfig({
   adapter: netlify(),
+  experimental: {
+    serverIslands: true,
+  },
   integrations: [
+    // TODO(HiDeoo)
     starlight({
       title: 'My Docs',
+      components: {
+        SocialIcons: './src/overrides/SocialIcons.astro',
+      },
       social: {
         github: 'https://github.com/withastro/starlight',
       },
