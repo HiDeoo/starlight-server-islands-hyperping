@@ -14,7 +14,6 @@ export default defineConfig({
     },
   },
   integrations: [
-    // TODO(HiDeoo)
     starlight({
       title: 'Starlight + Server Islands',
       components: {
