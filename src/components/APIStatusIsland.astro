@@ -3,15 +3,11 @@ import { z } from 'astro/zod'
 import { HYPERPING_STATUS_PAGE_URL } from 'astro:env/server'
 import { Icon } from '@astrojs/starlight/components'
 
-// TODO(HiDeoo) keep only index.mdx
-// TODO(HiDeoo) docs
-
 const apiSchema = z.object({
   indicator: z.union([z.literal('maintenance'), z.literal('incident'), z.literal('outage'), z.literal('up')]),
 })
 type APIStatus = z.output<typeof apiSchema>['indicator'] | 'unknown'
 
-// FIXME(HiDeoo)
 let status: APIStatus = 'unknown'
 
 try {

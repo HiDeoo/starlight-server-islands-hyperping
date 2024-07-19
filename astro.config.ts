@@ -16,27 +16,14 @@ export default defineConfig({
   integrations: [
     // TODO(HiDeoo)
     starlight({
-      title: 'My Docs',
+      title: 'Starlight + Server Islands',
       components: {
         SocialIcons: './src/overrides/SocialIcons.astro',
       },
       pagefind: false,
       social: {
-        github: 'https://github.com/withastro/starlight',
+        github: 'https://github.com/hideoo/starlight-server-islands-hyperping',
       },
-      sidebar: [
-        {
-          label: 'Guides',
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: 'Example Guide', slug: 'guides/example' },
-          ],
-        },
-        {
-          label: 'Reference',
-          autogenerate: { directory: 'reference' },
-        },
-      ],
     }),
   ],
   output: 'hybrid',
