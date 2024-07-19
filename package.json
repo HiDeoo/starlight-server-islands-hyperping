@@ -15,5 +15,10 @@
     "sharp": "^0.32.5",
     "@astrojs/check": "^0.8.2",
     "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "@hideoo/prettier-config": "^2.0.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
